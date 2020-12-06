@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
 import unittest
-from users import Group
+from contact import Group
 
 from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException
 

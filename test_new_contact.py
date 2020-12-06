@@ -5,7 +5,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest
 import os
-from users import Users
+from contact import Contact
 
 class NewContact(unittest.TestCase):
     def __init__(self, methodName: str = ...):
@@ -22,10 +22,10 @@ class NewContact(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, "admin", "secret")
         self.open_add_new(wd)
-        self.fill_contact_info(wd, Users(firstname="testname", middlename="testmidl", lastname="testlas", nickname="testnicl", title="testtit", company="testcomp",
+        self.fill_contact_info(wd, Contact(firstname="testname", middlename="testmidl", lastname="testlas", nickname="testnicl", title="testtit", company="testcomp",
                                address="testadd - asd;m / asd/ 12", telhome="+7(864)151-424-77", telmob="+7(919)151-44-44", telwork="6161", fax="5616156",
                                email="test@mail.ru", mail2="test2@gmail.com", mail3="awd@mail.ru", homepage="wfwef@vk.ru", years1="1992", years2="1995",
-                               address2="wefwefawaefgwaeg\nawegawegaweg\nwaeg", phone2="WEFWF3", nots="wefawef"))
+                               address2="wefwefawaefgwaeg\nawegawegaweg\nwaeg", phone2="WEFWF3", nots="wefawef",bday="1", aday="1", bmonth="May", amonth="June", photo=os.getcwd() + "/pik.jpeg"))
         self.back_home_page(wd)
         self.logout(wd)
 
@@ -34,10 +34,10 @@ class NewContact(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, "admin", "secret")
         self.open_add_new(wd)
-        self.fill_contact_info(wd, Users(firstname="", middlename="", lastname="", nickname="", title="", company="",
+        self.fill_contact_info(wd, Contact(firstname="", middlename="", lastname="", nickname="", title="", company="",
                                address="", telhome="", telmob="", telwork="", fax="",
                                email="", mail2="", mail3="", homepage="", years1="", years2="",
-                               address2="", phone2="", nots=""))
+                               address2="", phone2="", nots="", bday="", aday="", bmonth="", amonth="", photo=os.getcwd() + "/pik.jpeg"))
         self.back_home_page(wd)
         self.logout(wd)
 
@@ -47,73 +47,71 @@ class NewContact(unittest.TestCase):
     def back_home_page(self, wd):
         wd.find_element_by_link_text("home page").click()
 
-    def fill_contact_info(self, wd, users):
+    def fill_contact_info(self, wd, contact):
         # поля ФИО, НИК
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(users.firstname)
+        wd.find_element_by_name("firstname").send_keys(contact.firstname)
         wd.find_element_by_name("middlename").clear()
-        wd.find_element_by_name("middlename").send_keys(users.middlename)
+        wd.find_element_by_name("middlename").send_keys(contact.middlename)
         wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(users.lastname)
+        wd.find_element_by_name("lastname").send_keys(contact.lastname)
         wd.find_element_by_name("nickname").clear()
-        wd.find_element_by_name("nickname").send_keys(users.nickname)
+        wd.find_element_by_name("nickname").send_keys(contact.nickname)
         # добавление фото
-        wd.find_element_by_name("photo").click()
-        wd.find_element_by_name("photo").clear()
-        wd.find_element_by_name("photo").send_keys(os.getcwd()+"/pik.jpeg")
+        wd.find_element_by_name("photo").send_keys(contact.photo)
         # работа, контактные данные
         wd.find_element_by_name("title").click()
         wd.find_element_by_name("title").clear()
-        wd.find_element_by_name("title").send_keys(users.title)
+        wd.find_element_by_name("title").send_keys(contact.title)
         wd.find_element_by_name("company").clear()
-        wd.find_element_by_name("company").send_keys(users.company)
+        wd.find_element_by_name("company").send_keys(contact.company)
         wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys(users.address)
+        wd.find_element_by_name("address").send_keys(contact.address)
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys(users.telhome)
+        wd.find_element_by_name("home").send_keys(contact.telhome)
         wd.find_element_by_name("mobile").click()
         wd.find_element_by_name("mobile").clear()
-        wd.find_element_by_name("mobile").send_keys(users.telmob)
+        wd.find_element_by_name("mobile").send_keys(contact.telmob)
         wd.find_element_by_name("work").click()
         wd.find_element_by_name("work").clear()
-        wd.find_element_by_name("work").send_keys(users.telwork)
+        wd.find_element_by_name("work").send_keys(contact.telwork)
         wd.find_element_by_name("fax").clear()
-        wd.find_element_by_name("fax").send_keys(users.fax)
+        wd.find_element_by_name("fax").send_keys(contact.fax)
         # соц сети контакты
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys(users.email)
+        wd.find_element_by_name("email").send_keys(contact.email)
         wd.find_element_by_name("email2").click()
         wd.find_element_by_name("email2").clear()
-        wd.find_element_by_name("email2").send_keys(users.mail2)
+        wd.find_element_by_name("email2").send_keys(contact.mail2)
         wd.find_element_by_name("email3").click()
         wd.find_element_by_name("email3").clear()
-        wd.find_element_by_name("email3").send_keys(users.mail3)
+        wd.find_element_by_name("email3").send_keys(contact.mail3)
         wd.find_element_by_name("homepage").click()
         wd.find_element_by_name("homepage").clear()
-        wd.find_element_by_name("homepage").send_keys(users.homepage)
+        wd.find_element_by_name("homepage").send_keys(contact.homepage)
         # даты, выпадающим списком
         wd.find_element_by_name("bday").click()
-        Select(wd.find_element_by_name("bday")).select_by_visible_text("1")
+        Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.bday)
         wd.find_element_by_xpath("//option[@value='1']").click()
         wd.find_element_by_name("bmonth").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text("December")
+        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.bmonth)
         wd.find_element_by_xpath("//option[@value='December']").click()
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys(users.years1)
+        wd.find_element_by_name("byear").send_keys(contact.years1)
         wd.find_element_by_name("aday").click()
-        Select(wd.find_element_by_name("aday")).select_by_visible_text("1")
+        Select(wd.find_element_by_name("aday")).select_by_visible_text(contact.aday)
         wd.find_element_by_xpath("(//option[@value='1'])[2]").click()
         wd.find_element_by_name("amonth").click()
-        Select(wd.find_element_by_name("amonth")).select_by_visible_text("June")
+        Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact.amonth)
         wd.find_element_by_xpath("(//option[@value='June'])[2]").click()
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
-        wd.find_element_by_name("ayear").send_keys(users.years2)
+        wd.find_element_by_name("ayear").send_keys(contact.years2)
         # принадлежность к группе
         wd.find_element_by_name("new_group").click()
         Select(wd.find_element_by_name("new_group")).select_by_visible_text("asd")
@@ -121,13 +119,13 @@ class NewContact(unittest.TestCase):
         # заполение вторичных полей
         wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
-        wd.find_element_by_name("address2").send_keys(users.address2)
+        wd.find_element_by_name("address2").send_keys(contact.address2)
         wd.find_element_by_name("phone2").click()
         wd.find_element_by_name("phone2").clear()
-        wd.find_element_by_name("phone2").send_keys(users.phone2)
+        wd.find_element_by_name("phone2").send_keys(contact.phone2)
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
-        wd.find_element_by_name("notes").send_keys(users.nots)
+        wd.find_element_by_name("notes").send_keys(contact.nots)
         # сохраняем изменения
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
 
