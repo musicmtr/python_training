@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest
+import os
 from users import Users
 
 class NewContact(unittest.TestCase):
@@ -57,11 +58,11 @@ class NewContact(unittest.TestCase):
         wd.find_element_by_name("lastname").send_keys(users.lastname)
         wd.find_element_by_name("nickname").clear()
         wd.find_element_by_name("nickname").send_keys(users.nickname)
-        '''        # добавление фото
+        # добавление фото
         wd.find_element_by_name("photo").click()
         wd.find_element_by_name("photo").clear()
-        wd.find_element_by_name("photo").send_keys(u"C:\\fakepath\\Снимок экрана от 2020-12-05 17-39-40.png")
-'''        # работа, контактные данные
+        wd.find_element_by_name("photo").send_keys(os.getcwd()+"/pik.jpeg")
+        # работа, контактные данные
         wd.find_element_by_name("title").click()
         wd.find_element_by_name("title").clear()
         wd.find_element_by_name("title").send_keys(users.title)
