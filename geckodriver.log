@@ -1,0 +1,24 @@
+1607246546525	geckodriver	INFO	Listening on 127.0.0.1:36479
+1607246547530	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileYdTvgB"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1607246549891	Marionette	INFO	Listening on port 45395
+1607246549960	Marionette	WARN	TLS certificate errors will be ignored for this session
+1607246551149	Marionette	INFO	Stopped listening on port 45395
+1607246963084	geckodriver	INFO	Listening on 127.0.0.1:59037
+1607246963094	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilelv86Fk"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1607246965202	Marionette	INFO	Listening on port 44907
+1607246965326	Marionette	WARN	TLS certificate errors will be ignored for this session
+1607246966605	Marionette	INFO	Stopped listening on port 44907
+1607247101194	geckodriver	INFO	Listening on 127.0.0.1:34003
+1607247101199	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileRQC92O"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1607247103301	Marionette	INFO	Listening on port 35551
+1607247103341	Marionette	WARN	TLS certificate errors will be ignored for this session
+1607247104530	Marionette	INFO	Stopped listening on port 35551
+1607247272482	geckodriver	INFO	Listening on 127.0.0.1:59969
+1607247272487	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilena8ksT"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1607247274460	Marionette	INFO	Listening on port 35213
+1607247274514	Marionette	WARN	TLS certificate errors will be ignored for this session
+1607247275758	Marionette	INFO	Stopped listening on port 35213
