@@ -149,5 +149,6 @@ class NewContact(unittest.TestCase):
         self.wd.quit()
         self.assertEqual([], self.verificationErrors)
 
+
 if __name__ == "__main__":
     unittest.main()
