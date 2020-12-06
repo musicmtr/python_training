@@ -37,7 +37,7 @@ class NewContact(unittest.TestCase):
         self.fill_contact_info(wd, Contact(firstname="", middlename="", lastname="", nickname="", title="", company="",
                                address="", telhome="", telmob="", telwork="", fax="",
                                email="", mail2="", mail3="", homepage="", years1="", years2="",
-                               address2="", phone2="", nots="", bday="", aday="", bmonth="", amonth="", photo=os.getcwd() + "/pik.jpeg"))
+                               address2="", phone2="", nots="", bday="", aday="", bmonth="", amonth="", photo=None))
         self.back_home_page(wd)
         self.logout(wd)
 
@@ -59,7 +59,10 @@ class NewContact(unittest.TestCase):
         wd.find_element_by_name("nickname").clear()
         wd.find_element_by_name("nickname").send_keys(contact.nickname)
         # добавление фото
-        wd.find_element_by_name("photo").send_keys(contact.photo)
+        if contact.photo is None:
+            pass
+        else:
+            wd.find_element_by_name("photo").send_keys(contact.photo)
         # работа, контактные данные
         wd.find_element_by_name("title").click()
         wd.find_element_by_name("title").clear()
