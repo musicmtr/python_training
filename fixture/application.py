@@ -2,6 +2,7 @@ from selenium.webdriver.firefox.webdriver import WebDriver
 from fixture.group import GroupHelper
 from fixture.session import SessionHelper
 
+
 class Application:
 
     def __init__(self):
@@ -19,6 +20,7 @@ class Application:
 
     def back_home_page(self):
         self.wd.find_element_by_link_text("home page").click()
+
 
     def fill_contact_info(self, contact):
         # поля ФИО, НИК
@@ -100,7 +102,6 @@ class Application:
         # сохраняем изменения
         self.wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
         self.back_home_page()
-
 
     def open_add_new(self):
         self.open_add_new()
