@@ -1,11 +1,24 @@
 from selenium.webdriver.support.select import Select
-
+import unittest
 
 class ContactHelper:
 
 
     def __init__(self, app):
         self.app = app
+        self.accept_next_alert = True
+
+    def delete_first_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
+        # select first group
+        wd.find_element_by_name("selected[]").click()
+        # submit deletion
+        #wd.find_element_by_name("Delete").click()
+        self.accept_next_alert = True
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        self.assertRegexpMatches(self.close_alert_and_get_its_text(), r"^Delete 1 addresses[\s\S]$")
+        self.app.back_home_page()
 
     def fill_info(self, contact):
         # поля ФИО, НИК
