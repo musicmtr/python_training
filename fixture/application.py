@@ -2,7 +2,6 @@ from selenium.webdriver.firefox.webdriver import WebDriver
 from fixture.group import GroupHelper
 from fixture.session import SessionHelper
 from fixture.contact import ContactHelper
-import os
 
 
 class Application:
@@ -22,6 +21,7 @@ class Application:
         self.wd.find_element_by_link_text("home page").click()
 
     def open_home_page(self):
+        wd = self.wd
         self.wd.get("http://localhost/addressbook/edit.php")
 
     def destroy(self):
