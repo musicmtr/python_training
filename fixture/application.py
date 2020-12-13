@@ -13,14 +13,14 @@ class Application:
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
 
-    def open_home_page(self):
+    def open_home_page1(self):
         wd = self.wd
         wd.get("http://localhost/addressbook/index.php")
 
     def back_home_page(self):
         self.wd.find_element_by_link_text("home page").click()
 
-    def open_home_page(self):
+    def open_home_page2(self):
         wd = self.wd
         self.wd.get("http://localhost/addressbook/edit.php")
 
