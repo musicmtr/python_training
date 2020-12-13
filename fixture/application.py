@@ -1,6 +1,8 @@
 from selenium.webdriver.firefox.webdriver import WebDriver
+from selenium.webdriver.support.ui import Select
 from fixture.group import GroupHelper
 from fixture.session import SessionHelper
+import os
 
 
 class Application:
@@ -73,22 +75,22 @@ class Application:
         self.wd.find_element_by_name("homepage").send_keys(contact.homepage)
         # даты, выпадающим списком
         self.wd.find_element_by_name("bday").click()
-        self.Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.bday)
+        Select(self.wd.find_element_by_name("bday")).select_by_visible_text(contact.bday)
         self.wd.find_element_by_name("bmonth").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.bmonth)
+        Select(self.wd.find_element_by_name("bmonth")).select_by_visible_text(contact.bmonth)
         self.wd.find_element_by_name("byear").click()
         self.wd.find_element_by_name("byear").clear()
         self.wd.find_element_by_name("byear").send_keys(contact.years1)
         self.wd.find_element_by_name("aday").click()
-        Select(wd.find_element_by_name("aday")).select_by_visible_text(contact.aday)
+        Select(self.wd.find_element_by_name("aday")).select_by_visible_text(contact.aday)
         self.wd.find_element_by_name("amonth").click()
-        Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact.amonth)
+        Select(self.wd.find_element_by_name("amonth")).select_by_visible_text(contact.amonth)
         self.wd.find_element_by_name("ayear").click()
         self.wd.find_element_by_name("ayear").clear()
         self.wd.find_element_by_name("ayear").send_keys(contact.years2)
         # принадлежность к группе
         self.wd.find_element_by_name("new_group").click()
-        Select(wd.find_element_by_name("new_group")).select_by_visible_text(contact.newgroup)
+        Select(self.wd.find_element_by_name("new_group")).select_by_visible_text(contact.newgroup)
         # заполение вторичных полей
         self.wd.find_element_by_name("address2").click()
         self.wd.find_element_by_name("address2").clear()
