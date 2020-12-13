@@ -17,8 +17,6 @@ class Application:
         wd = self.wd
         wd.get("http://localhost/addressbook/index.php")
 
-    def logout(self):
-        self.wd.find_element_by_link_text("Logout").click()
 
     def back_home_page(self):
         self.wd.find_element_by_link_text("home page").click()
@@ -112,14 +110,6 @@ class Application:
     def open_home_page(self):
         self.wd.get("http://localhost/addressbook/edit.php")
 
-    def login(self, username, password):
-        self.open_home_page()
-        self.wd.find_element_by_name("user").click()
-        self.wd.find_element_by_name("user").clear()
-        self.wd.find_element_by_name("user").send_keys(username)
-        self.wd.find_element_by_name("pass").clear()
-        self.wd.find_element_by_name("pass").send_keys(password)
-        self.wd.find_element_by_id("LoginForm").submit()
 
     def destroy(self):
         self.wd.quit()
