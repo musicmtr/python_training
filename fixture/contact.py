@@ -96,7 +96,7 @@ class ContactHelper:
         wd.find_element_by_name("notes").send_keys(contact.nots)
         # сохраняем изменения
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
-        self.app.back_home_page()
+        self.app.navigation.back_home_page()
 
     def open_add_new(self):
         wd = self.app.wd
