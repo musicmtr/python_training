@@ -20,13 +20,13 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("home").click()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
-        wd.switch_to_alert().accept()
-        self.app.open_home_page()
+#        wd.switch_to_alert().accept()
+        self.app.navigation.open_home_page()
 
     def save_edit_info(self):
         wd = self.app.wd
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
-        self.app.back_home_page()
+        self.app.navigation.back_home_page()
 
     def fill_info(self, contact):
         # поля ФИО, НИК
