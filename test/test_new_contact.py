@@ -3,6 +3,7 @@ import os
 from model.contact import Contact
 
 
+
 def test_new_contact(app):
     app.session.edit_page(username="admin", password="secret")
     app.contact.fill_info(
@@ -20,7 +21,8 @@ def test_new_contact(app):
 
 def test_new_empty_contact(app):
     app.session.edit_page(username="admin", password="secret")
-    app.contact.fill_info(Contact(firstname="", middlename="", lastname="", nickname="", title="", company="",
+    app.contact.fill_info(
+        Contact(firstname="", middlename="", lastname="", nickname="", title="", company="",
                                   address="", telhome="", telmob="", telwork="", fax="",
                                   email="", mail2="", mail3="", homepage="", years1="", years2="",
                                   address2="", phone2="", nots="", bday="-", aday="-", bmonth="-", amonth="-",
