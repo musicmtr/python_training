@@ -14,7 +14,7 @@ class ContactHelper:
         # submit deletion
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
-        self.app.open_home_page()
+        self.app.navigation.open_home_page()
 
     def fill_info(self, contact):
         # поля ФИО, НИК
