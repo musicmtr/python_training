@@ -4,7 +4,7 @@ from model.contact import Contact
 import time
 
 def test_edit_info(app):
-    app.session.login(username="admin", password="secret")
+    app.session.home_page(username="admin", password="secret")
     time.sleep(5)
     app.contact.edit_info()
     time.sleep(5)

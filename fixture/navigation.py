@@ -1,11 +1,7 @@
-from selenium.webdriver.firefox.webdriver import WebDriver
-
-
 class Navigation_Helper:
 
     def __init__(self, app):
         self.app = app
-        self.wd = WebDriver()
 
     def open_home_page(self):
         wd = self.app.wd

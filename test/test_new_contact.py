@@ -4,7 +4,7 @@ from model.contact import Contact
 
 
 def test_new_contact(app):
-    app.session.login2(username="admin", password="secret")
+    app.session.edit_page(username="admin", password="secret")
     app.contact.fill_info(
         Contact(firstname="testname", middlename="testmidl", lastname="testlas", nickname="testnicl", title="testtit",
                 company="testcomp",
@@ -19,7 +19,7 @@ def test_new_contact(app):
 
 
 def test_new_empty_contact(app):
-    app.session.login2(username="admin", password="secret")
+    app.session.edit_page(username="admin", password="secret")
     app.contact.fill_info(Contact(firstname="", middlename="", lastname="", nickname="", title="", company="",
                                   address="", telhome="", telmob="", telwork="", fax="",
                                   email="", mail2="", mail3="", homepage="", years1="", years2="",
