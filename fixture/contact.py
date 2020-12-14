@@ -16,6 +16,18 @@ class ContactHelper:
         wd.switch_to_alert().accept()
         self.app.navigation.open_home_page()
 
+    def edit_info(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
+        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        wd.switch_to_alert().accept()
+        self.app.open_home_page()
+
+    def save_edit_info(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
+        self.app.back_home_page()
+
     def fill_info(self, contact):
         # поля ФИО, НИК
         wd = self.app.wd
@@ -95,6 +107,9 @@ class ContactHelper:
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(contact.nots)
         # сохраняем изменения
+
+    def save_fill_info(self):
+        wd = self.app.wd
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
         self.app.navigation.back_home_page()
 
