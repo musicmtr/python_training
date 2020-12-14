@@ -1,7 +1,7 @@
 from selenium.webdriver.support.select import Select
 
-class ContactHelper:
 
+class ContactHelper:
 
     def __init__(self, app):
         self.app = app
@@ -11,9 +11,7 @@ class ContactHelper:
         wd.find_element_by_link_text("home").click()
         # select first group
         wd.find_element_by_name("selected[]").click()
-#        wd.find_element_by_name("selected[]").click()
         # submit deletion
-        #        self.accept_next_alert = True
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         self.app.open_home_page()
