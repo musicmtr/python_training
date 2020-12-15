@@ -14,7 +14,7 @@ def test_new_contact(app):
                 years1="1992", years2="1995",
                 address2="wefwefawaefgwaeg\nawegawegaweg\nwaeg", phone2="WEFWF3", nots="wefawef", bday="4", aday="4",
                 bmonth="May", amonth="June", photo=os.path.dirname(os.getcwd()) + "/test_data/pik.jpeg"))
-    app.contact.save_fill_info
+    app.contact.save_fill_info()
     app.session.logout()
 
 
@@ -26,5 +26,5 @@ def test_new_empty_contact(app):
                                   email="", mail2="", mail3="", homepage="", years1="", years2="",
                                   address2="", phone2="", nots="", bday="-", aday="-", bmonth="-", amonth="-",
                                   photo=None))
-    app.contact.save_fill_info
+    app.contact.save_fill_info()
     app.session.logout()
