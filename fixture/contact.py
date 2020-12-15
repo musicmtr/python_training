@@ -18,7 +18,6 @@ class ContactHelper:
 
     def edit_info(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
         wd.find_element_by_xpath("//tr[position()=2]//img[@title='Edit']").click()
 
     def edit(self, contact):
@@ -88,7 +87,6 @@ class ContactHelper:
         wd.find_element_by_name("phone2").send_keys(contact.phone2)
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(contact.note)
-
 
     def save_edit_info(self):
         wd = self.app.wd
@@ -161,8 +159,8 @@ class ContactHelper:
         wd.find_element_by_name("ayear").clear()
         wd.find_element_by_name("ayear").send_keys(contact.years2)
         # принадлежность к группе
-        wd.find_element_by_name("new_group").click()
-        Select(wd.find_element_by_name("new_group")).select_by_visible_text(contact.newgroup)
+        #wd.find_element_by_name("new_group").click()
+        #Select(wd.find_element_by_name("new_group")).select_by_visible_text(contact.newgroup)
         # заполение вторичных полей
         wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
@@ -174,8 +172,7 @@ class ContactHelper:
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(contact.nots)
         # сохраняем изменения
-        wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
-
+        #wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
 
     def save_fill_info(self):
         wd = self.app.wd

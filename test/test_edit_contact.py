@@ -11,5 +11,4 @@ def test_edit_info(app):
                                   email="rest@mail.ru", mail2="rest2@gmail.com", mail3="reawd@mail.ru", homepage="rewef@vk.ru", years1="1990", years2="1999",
                                   address2="rerererer", phone2="REEER", nots="REREf", bday="10", aday="10", bmonth="April", amonth="July", photo=os.path.dirname(os.getcwd()) + "/test_data/pik.jpeg"))
     app.contact.save_edit_info()
-    time.sleep(5)
     app.session.logout()
