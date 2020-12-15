@@ -6,6 +6,11 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("group page").click()
 
+    def check_added(self, group):
+        wd = self.app.wd
+        self.open_groups_page()
+        wd.find_element_by_xpath("//input[@title='Select ({})']".format(group.group_name))
+
     def create(self, group):
         wd = self.app.wd
         self.open_groups_page()
@@ -37,7 +42,7 @@ class GroupHelper:
         wd.find_element_by_link_text("groups").click()
 
     def edit(self, group):
-        wd = self.app.wb
+        wd = self.app.wd
         self.open_groups_page()
         wd.find_element_by_name("group_name").click()
         wd.find_element_by_name("group_name").clear()

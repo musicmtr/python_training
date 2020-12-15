@@ -13,7 +13,7 @@ class SessionHelper:
         wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_id("LoginForm").submit()
 
-    def edit_page(self, username, password):
+    def add_page(self, username, password):
         wd = self.app.wd
         self.app.navigation.open_edit_page()
         wd.find_element_by_name("user").click()
