@@ -5,7 +5,7 @@ from model.contact import Contact
 
 def test_new_contact(app):
     app.session.add_page(username="admin", password="secret")
-    app.contact.fill_info(
+    app.contact.create_info(
         Contact(firstname="testname", middlename="testmidl", lastname="testlas", nickname="testnicl", title="testtit",
                 company="testcomp",
                 address="testadd - asd;m / asd/ 12", telhome="+7(864)151-424-77", telmob="+7(919)151-44-44",
@@ -14,17 +14,17 @@ def test_new_contact(app):
                 years1="1992", years2="1995",
                 address2="wefwefawaefgwaeg\nawegawegaweg\nwaeg", phone2="WEFWF3", nots="wefawef", bday="4", aday="4",
                 bmonth="May", amonth="June", photo=os.path.dirname(os.getcwd()) + "/test_data/pik.jpeg"))
-    app.contact.save_fill_info()
+    app.contact.save_created()
     app.session.logout()
 
 
 def test_new_empty_contact(app):
     app.session.add_page(username="admin", password="secret")
-    app.contact.fill_info(
+    app.contact.create_info(
         Contact(firstname="", middlename="", lastname="", nickname="", title="", company="",
                                   address="", telhome="", telmob="", telwork="", fax="",
                                   email="", mail2="", mail3="", homepage="", years1="", years2="",
                                   address2="", phone2="", nots="", bday="-", aday="-", bmonth="-", amonth="-",
                                   photo=None))
-    app.contact.save_fill_info()
+    app.contact.save_created()
     app.session.logout()
