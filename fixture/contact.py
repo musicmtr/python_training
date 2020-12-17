@@ -16,7 +16,7 @@ class ContactHelper:
         wd.switch_to_alert().accept()
         self.app.navigation.open_home_page()
 
-    def edit_info(self):
+    def open_edit_form(self):
         wd = self.app.wd
         wd.find_element_by_xpath("//tr[position()=2]//img[@title='Edit']").click()
 
@@ -73,20 +73,24 @@ class ContactHelper:
         # даты, выпадающим списком
         wd.find_element_by_name("bday").click()
         Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.bday)
-        wd.find_element_by_xpath("//option[@value='4']").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.bmotnh)
+        wd.find_element_by_name("bmonth").click()
+        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.bmonth)
+        wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys(contact.byear)
+        wd.find_element_by_name("byear").send_keys(contact.years1)
+        wd.find_element_by_name("aday").click()
         Select(wd.find_element_by_name("aday")).select_by_visible_text(contact.aday)
+        wd.find_element_by_name("amonth").click()
         Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact.amonth)
-        wd.find_element_by_name("ayear").clear()
-        wd.find_element_by_name("ayear").send_keys(contact.ayear)
+        wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
-        wd.find_element_by_name("address2").send_keys(contact.adr2)
+        wd.find_element_by_name("address2").send_keys(contact.address2)
+        wd.find_element_by_name("phone2").click()
         wd.find_element_by_name("phone2").clear()
         wd.find_element_by_name("phone2").send_keys(contact.phone2)
+        wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
-        wd.find_element_by_name("notes").send_keys(contact.note)
+        wd.find_element_by_name("notes").send_keys(contact.nots)
 
     def save_edit_info(self):
         wd = self.app.wd
