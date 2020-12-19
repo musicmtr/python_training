@@ -5,7 +5,7 @@ from model.contact import Contact
 
 def test_new_contact(app):
     app.session.add_page(username="admin", password="secret")
-    app.contact.create_info(
+    app.contact.fill_form(
         Contact(firstname="testname", middlename="testmidl", lastname="testlas", nickname="testnicl", title="testtit",
                 company="testcomp",
                 address="testadd - asd;m / asd/ 12", telhome="+7(864)151-424-77", telmob="+7(919)151-44-44",
@@ -20,7 +20,7 @@ def test_new_contact(app):
 
 def test_new_empty_contact(app):
     app.session.add_page(username="admin", password="secret")
-    app.contact.create_info(
+    app.contact.fill_form(
         Contact(firstname="", middlename="", lastname="", nickname="", title="", company="",
                                   address="", telhome="", telmob="", telwork="", fax="",
                                   email="", mail2="", mail3="", homepage="", years1="", years2="",
