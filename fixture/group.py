@@ -1,0 +1,51 @@
+class GroupHelper:
+    def __init__(self, app):
+        self.app = app
+
+    def return_to_groups_page(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("group page").click()
+
+    def open_edit_form_for_first(self):
+        wd = self.app.wd
+        self.open_groups_page()
+        wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_name("edit").click()
+
+    def open_groups_page(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("groups").click()
+
+    def open_create_form(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("groups").click()
+        wd.find_element_by_name("new").click()
+
+    def fill_group(self, group):
+        wd = self.app.wd
+        # заполнение данных групп
+        wd.find_element_by_name("group_name").click()
+        wd.find_element_by_name("group_name").clear()
+        wd.find_element_by_name("group_name").send_keys(group.name)
+        wd.find_element_by_name("group_header").clear()
+        wd.find_element_by_name("group_header").send_keys(group.header)
+        wd.find_element_by_name("group_footer").clear()
+        wd.find_element_by_name("group_footer").send_keys(group.footer)
+        # создаем группу
+
+    def delete_first_group(self):
+        wd = self.app.wd
+        self.open_groups_page()
+        # select first group
+        wd.find_element_by_name("selected[]").click()
+        # submit deletion
+        wd.find_element_by_name("delete").click()
+        self.return_to_groups_page()
+
+    def submit_create(self):
+        wd = self.app.wd
+        wd.find_element_by_name("submit").click()
+
+    def submit_edit(self):
+        wd = self.app.wd
+        wd.find_element_by_name("update").click()
