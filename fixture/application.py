@@ -14,6 +14,7 @@ class Application:
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
         self.navigation = Navigation_Helper(self)
+        self.wd.maximize_window()
 
     def destroy(self):
         self.wd.quit()
