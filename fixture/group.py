@@ -4,22 +4,26 @@ class GroupHelper:
 
     def return_to_groups_page(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("group page").click()
+        if not (wd.current_url.endswith("/group.php") and len(wd.find_elements_by_name("group_page")) > 0):
+            wd.find_element_by_link_text("group page").click()
 
     def open_edit_form_for_first(self):
         wd = self.app.wd
-        self.open_groups_page()
-        wd.find_element_by_name("selected[]").click()
-        wd.find_element_by_name("edit").click()
+        if not (wd.current_url.endswith("Edit+group") and len(wd.find_elements_by_name("Update")) > 0):
+            self.open_groups_page()
+            wd.find_element_by_name("selected[]").click()
+            wd.find_element_by_name("edit").click()
 
     def open_groups_page(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("groups").click()
+        if not (wd.current_url.endswith("/group.php") and len(wd.find_elements_by_name("new")) > 0):
+            wd.find_element_by_link_text("groups").click()
 
     def open_create_form(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("groups").click()
-        wd.find_element_by_name("new").click()
+        if not (wd.current_url.endswith("New+group") and len(wd.find_elements_by_name("group_page")) > 0):
+            wd.find_element_by_link_text("groups").click()
+            wd.find_element_by_name("new").click()
 
     def change_field_value(self, text, field_name):
         wd = self.app.wd
