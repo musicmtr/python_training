@@ -3,7 +3,7 @@ class SessionHelper:
     def __init__(self, app):
         self.app = app
 
-    def home_page(self, username, password):
+    def login(self, username, password):
         wd = self.app.wd
         self.app.navigation.open_home_page()
         wd.find_element_by_name("user").click()
@@ -49,3 +49,4 @@ class SessionHelper:
             else:
                 self.logout()
         self.login(username, password)
+
