@@ -107,3 +107,10 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
         self.app.navigation.back_home_page()
+
+    def count(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
+        # select first group
+        return len(wd.find_elements_by_name("selected[]"))
+

@@ -67,3 +67,10 @@ class GroupHelper:
         wd = self.app.wd
         self.open_groups_page()
         return len(wd.find_elements_by_name("selected[]"))
+
+    def create(self, group):
+        wd = self.app.wd
+        self.open_groups_page()
+        self.open_create_form()
+        self.fill_group(group)
+        self.submit_create()
