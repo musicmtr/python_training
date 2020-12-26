@@ -4,7 +4,8 @@ from model.contact import Contact
 
 
 def test_new_contact(app):
-    app.session.add_page(username="admin", password="secret")
+
+    app.contact.open_add_new()
     app.contact.fill_form(
         Contact(firstname="testname", middlename="testmidl", lastname="testlas", nickname="testnicl", title="testtit",
                 company="testcomp",
@@ -15,11 +16,11 @@ def test_new_contact(app):
                 address2="wefwefawaefgwaeg\nawegawegaweg\nwaeg", phone2="WEFWF3", nots="wefawef", bday="4", aday="4",
                 bmonth="May", amonth="June", photo=os.path.dirname(os.getcwd()) + "/test_data/pik.jpeg"))
     app.contact.save_created()
-    app.session.logout()
 
 
 def test_new_empty_contact(app):
-    app.session.add_page(username="admin", password="secret")
+
+    app.contact.open_add_new()
     app.contact.fill_form(
         Contact(firstname="", middlename="", lastname="", nickname="", title="", company="",
                                   address="", telhome="", telmob="", telwork="", fax="",
@@ -27,4 +28,4 @@ def test_new_empty_contact(app):
                                   address2="", phone2="", nots="", bday="-", aday="-", bmonth="-", amonth="-",
                                   photo=None))
     app.contact.save_created()
-    app.session.logout()
+

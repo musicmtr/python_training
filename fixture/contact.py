@@ -18,7 +18,6 @@ class ContactHelper:
 
     def open_add_new(self):
         wd = self.app.wd
-        self.open_add_new()
         wd.find_element_by_link_text("add new").click()
 
     def open_edit_form(self):

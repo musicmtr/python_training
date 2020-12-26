@@ -16,5 +16,12 @@ class Application:
         self.navigation = Navigation_Helper(self)
         self.wd.maximize_window()
 
+    def is_valid(self):
+        try:
+            self.wd.current_url
+            return True
+        except:
+            return False
+
     def destroy(self):
         self.wd.quit()
