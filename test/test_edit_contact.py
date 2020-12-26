@@ -5,6 +5,7 @@ import time
 
 def test_edit_info(app):
 
+    app.navigation.open_home_page()
     app.contact.open_edit_form()
     app.contact.fill_form(Contact(firstname="restname", middlename="restmidl", lastname="restlas", nickname="rettnicl", title="resttit", company="restcomp",
                                   address="restadd - asd;m / asd/ 12", telhome="+7(666)151-424-77", telmob="+7(666)151-44-44", telwork="444", fax="44444",
