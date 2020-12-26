@@ -31,9 +31,9 @@ class GroupHelper:
     def fill_group(self, group):
         wd = self.app.wd
         # заполнение данных групп
-        self.change_field_value("group_name", group.name)
-        self.change_field_value("group_header", group.header)
-        self.change_field_value("group_footer", group.footer)
+        self.change_field_value(field_name="group_name", text=group.name)
+        self.change_field_value(field_name="group_header", text=group.header)
+        self.change_field_value(field_name="group_footer", text=group.footer)
 
     def delete_first_group(self):
         wd = self.app.wd
