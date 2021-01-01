@@ -8,7 +8,7 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
+        self.open_home_page()
         # select first group
         wd.find_element_by_name("selected[]").click()
         # submit deletion
@@ -118,5 +118,6 @@ class ContactHelper:
 
     def open_home_page(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
+        if not (wd.current_url.endswith("/index.php") and len(wd.find_elements_by_name("Last name")) > 0):
+            wd.find_element_by_link_text("home").click()
 
