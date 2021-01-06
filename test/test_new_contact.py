@@ -5,8 +5,8 @@ from model.contact import Contact
 
 def test_new_contact(app):
 
-    app.contact.open_add_new()
     old_contact = app.contact.get_contact_list()
+    app.contact.open_add_new()
     app.contact.fill_form(
         Contact(firstname="testname", middlename="testmidl", lastname="testlas", nickname="testnicl", title="testtit",
                 company="testcomp",
