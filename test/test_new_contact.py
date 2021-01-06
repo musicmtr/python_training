@@ -20,7 +20,6 @@ def test_new_contact(app):
     new_contact = app.contact.get_contact_list()
     assert len(old_contact) + 1 == len(new_contact)
 
-
 #def test_new_empty_contact(app):
 #    app.contact.open_add_new()
 #    app.contact.fill_form(
