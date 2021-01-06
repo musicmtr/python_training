@@ -104,7 +104,7 @@ class ContactHelper:
         for row in rows[1:]:
             # начинаем с второй строки
             id = row.find_elements_by_tag_name("td")[0].get_attribute("value")
-            first_name = row.find_elements_by_tag_name("td")[1].text
-            last_name = row.find_elements_by_tag_name("td")[2].text
-            contacts.append(Contact(lastname=last_name, firstname=first_name, id=id))
+            last_name = row.find_elements_by_tag_name("td")[1].text
+            first_name = row.find_elements_by_tag_name("td")[2].text
+            contacts.append(Contact(firstname=first_name, lastname=last_name,  id=id))
         return contacts
