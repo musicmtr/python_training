@@ -34,6 +34,14 @@ class ContactHelper:
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
 
+    def modify_first_contact(self, field_name):
+        wd = self.app.wd
+        self.open_edit_form()
+        # fill group form
+        self.fill_form(field_name)
+        self.save_edit_info()
+        self.open_home_page()
+
     def fill_form(self, contact):
         # поля ФИО, НИК
         wd = self.app.wd
