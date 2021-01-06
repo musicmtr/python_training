@@ -98,9 +98,14 @@ class ContactHelper:
     def get_contact_list(self):
         wd = self.app.wd
         self.open_home_page()
-        contact = []
-        for element in wd.find_elements_by_xpath("//table/tbody/tr[1]/td[1]/input[@name='selected[]']"):
-            text = element.text
-            id = element.find_elements_by_name("selected[]").get_attribute("value")
-            contact.append(Contact(firstname=text, lastname=text, id=id))
-        return contact
+        contacts = []
+        table_id = wd.find_element_by_id("maintable")
+        rows = table_id.find_elements_by_tag_name("tr") # get all of the rows in the table
+        for row in rows[1:]:
+            # Get the columns (all the column 2)
+            id = row.find_elements_by_tag_name("td")[0].get_attribute("value")
+            first_name = row.find_elements_by_tag_name("td")[1].text  # note: index start from 0, 1 is col 2
+            last_name = row.find_elements_by_tag_name("td")[2].text
+            contacts.append(Contact(firstname=first_name, lastname=last_name, id=id))
+        return contacts
+
