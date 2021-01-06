@@ -100,11 +100,11 @@ class ContactHelper:
         self.open_home_page()
         contacts = []
         table_id = wd.find_element_by_id("maintable")
-        rows = table_id.find_elements_by_tag_name("tr") # get all of the rows in the table
+        rows = table_id.find_elements_by_tag_name("tr") # берем все строки таблицы
         for row in rows[1:]:
-            # Get the columns (all the column 2)
+            # начинаем с второй строки
             id = row.find_elements_by_tag_name("td")[0].get_attribute("value")
-            first_name = row.find_elements_by_tag_name("td")[1].text  # note: index start from 0, 1 is col 2
+            first_name = row.find_elements_by_tag_name("td")[1].text
             last_name = row.find_elements_by_tag_name("td")[2].text
             contacts.append(Contact(lastname=last_name, firstname=first_name, id=id))
         return contacts
