@@ -1,4 +1,5 @@
 from selenium.webdriver.support.select import Select
+from model.contact import Contact
 
 
 class ContactHelper:
@@ -121,3 +122,12 @@ class ContactHelper:
         if not (wd.current_url.endswith("/index.php") and len(wd.find_elements_by_name("Last name")) > 0):
             wd.find_element_by_link_text("home").click()
 
+    def get_contact_list(self):
+        wd = self.app.wd
+        self.open_home_page()
+        contact = []
+        for element in wd.find_elements_by_css_selector("td.center"):
+            text = element.text
+            id = element.find_element_by_name("selected[]").get_attribute("value")
+            contact.append(Contact(firstname=text, lastname=text, id=id))
+        return contact

@@ -6,6 +6,7 @@ from model.contact import Contact
 def test_new_contact(app):
 
     app.contact.open_add_new()
+    old_contact = app.contact.get_contact_list()
     app.contact.fill_form(
         Contact(firstname="testname", middlename="testmidl", lastname="testlas", nickname="testnicl", title="testtit",
                 company="testcomp",
@@ -14,18 +15,19 @@ def test_new_contact(app):
                 email="test@mail.ru", mail2="test2@gmail.com", mail3="awd@mail.ru", homepage="wfwef@vk.ru",
                 years1="1992", years2="1995",
                 address2="wefwefawaefgwaeg\nawegawegaweg\nwaeg", phone2="WEFWF3", nots="wefawef", bday="4", aday="4",
-                bmonth="May", amonth="June", photo=os.path.dirname(os.getcwd()) + "\test_data\pik.jpeg"))
+                bmonth="May", amonth="June", photo=None))
     app.contact.save_created()
+    new_contact = app.contact.get_contact_list()
+    assert len(old_contact) + 1 == len(new_contact)
 
 
-def test_new_empty_contact(app):
-
-    app.contact.open_add_new()
-    app.contact.fill_form(
-        Contact(firstname="", middlename="", lastname="", nickname="", title="", company="",
-                                  address="", telhome="", telmob="", telwork="", fax="",
-                                  email="", mail2="", mail3="", homepage="", years1="", years2="",
-                                  address2="", phone2="", nots="", bday="-", aday="-", bmonth="-", amonth="-",
-                                  photo=None))
-    app.contact.save_created()
+#def test_new_empty_contact(app):
+#    app.contact.open_add_new()
+#    app.contact.fill_form(
+#        Contact(firstname="", middlename="", lastname="", nickname="", title="", company="",
+#                                  address="", telhome="", telmob="", telwork="", fax="",
+#                                  email="", mail2="", mail3="", homepage="", years1="", years2="",
+#                                  address2="", phone2="", nots="", bday="-", aday="-", bmonth="-", amonth="-",
+#                                  photo=None))
+#    app.contact.save_created()
 
