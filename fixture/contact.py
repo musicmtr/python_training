@@ -27,10 +27,12 @@ class ContactHelper:
         if not (wd.current_url.endswith("/edit.php") and len(wd.find_elements_by_name("firstname")) > 0):
             wd.find_element_by_link_text("add new").click()
 
-    def open_edit_form(self):
+    def open_edit_form(self, index):
         wd = self.app.wd
         if not (wd.current_url.endswith("/index.php") and len(wd.find_elements_by_name("Last name")) > 0):
             wd.find_element_by_xpath("//tr[position()=2]//img[@title='Edit']").click()
+            #wd.find_element_by_xpath("//tr[position()=%s]//img[@title='Edit']".format(index)).click()
+            #wd.find_element_by_xpath("//tr[position()={0}]//img[@title='Edit']".format(index)).click()
 
     def change_field_value(self, text, field_name):
         wd = self.app.wd
