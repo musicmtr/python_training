@@ -121,7 +121,7 @@ class ContactHelper:
             rows = table_id.find_elements_by_tag_name("tr") # берем все строки таблицы
             for row in rows[1:]:
                 # начинаем с второй строки
-                id = row.find_elements_by_tag_name("td")[0].get_attribute("value")
+                id = row.find_elements_by_tag_name("td")[0].find_element_by_tag_name("input").get_attribute("value")
                 last_name = row.find_elements_by_tag_name("td")[1].text
                 first_name = row.find_elements_by_tag_name("td")[2].text
                 self.contact_cache.append(Contact(firstname=first_name, lastname=last_name,  id=id))
