@@ -26,6 +26,6 @@ def test_edit_info(app):
     app.contact.save_edit_info()
     new_contact = app.contact.get_contact_list()
     assert len(old_contact) == len(new_contact)
-    old_contact[index:index+1] = contact
+    old_contact[index] = contact
     assert sorted(old_contact, key=Contact.id_or_max) == sorted(new_contact, key=Contact.id_or_max)
 
