@@ -126,5 +126,5 @@ class ContactHelper:
                 id = row.find_elements_by_tag_name("td")[0].find_element_by_tag_name("input").get_attribute("value")
                 last_name = row.find_elements_by_tag_name("td")[1].text
                 first_name = row.find_elements_by_tag_name("td")[2].text
-                self.contact_cache.append(Contact(firstname=first_name, lastname=last_name,  id=id))
+                self.contact_cache.append(Contact(firstname=first_name, lastname=last_name, id=id))
         return list(self.contact_cache)
