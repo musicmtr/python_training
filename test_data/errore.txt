@@ -1,0 +1,18 @@
+        old_contact.append(contact)
+>       assert sorted(old_contact, key=Contact.id_or_max) == sorted(new_contact, key=Contact.id_or_max)
+E       assert [None::,\n None:restname:restlas,\n None:testname:testlas,\n None:testname:testlas,\n None:testname:testlas,\n None:testname:testlas,\n None::] == [None:
+:,\n None::,\n None:restname:restlas,\n None:testname:testlas,\n None:testname:testlas,\n None:testname:testlas,\n None:testname:testlas]
+E         At index 1 diff: None:restname:restlas != None::
+E         Full diff:
+E           [
+E         -  None::,
+E            None::,
+E            None:restname:restlas,
+E            None:testname:testlas,
+E            None:testname:testlas,
+E            None:testname:testlas,
+E            None:testname:testlas,
+E         +  None::,
+E           ]
+
+test_new_contact.py:39: AssertionError
