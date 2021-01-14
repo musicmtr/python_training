@@ -158,12 +158,12 @@ class ContactHelper:
         telmob = wd.find_element_by_name("mobile").get_attribute("value")
         telwork = wd.find_element_by_name("work").get_attribute("value")
         phone2 = wd.find_element_by_name("phone2").get_attribute("value")
-#        email = wd.find_element_by_name("email").get_attribute("value")
-#       mail2 = wd.find_element_by_name("email2").get_attribute("value")
-#        mail3 = wd.find_element_by_name("email3").get_attribute("value")
+        email = wd.find_element_by_name("email").get_attribute("value")
+        mail2 = wd.find_element_by_name("email2").get_attribute("value")
+        mail3 = wd.find_element_by_name("email3").get_attribute("value")
         return Contact(firstname=firstname, lastname=lastname, id=id,
                        telhome=telhome, telmob=telmob, telwork=telwork, phone2=phone2,
-                       #email=email, mail2=mail2, mail3=mail3
+                       email=email, mail2=mail2, mail3=mail3
                        )
 
     def get_contact_from_view_page(self, index):
@@ -174,8 +174,9 @@ class ContactHelper:
         telmob = re.search("M: (.*)", text).group(1)
         telwork = re.search("W: (.*)", text).group(1)
         phone2 = re.search("P: (.*)", text).group(1)
-#        textmail = text.find_element_by_tag_name("a").text
-#        email = re.search("", textmail).group(1)
-#        mail2 = re.search("", textmail).group(1)
-#        mail3 = re.search("", textmail).group(1)
-        return Contact(telhome=telhome, telmob=telmob, telwork=telwork, phone2=phone2)
+        textmail = wd.find_element_by_id("content").find_element_by_tag_name("a").text
+        email = re.search("a  (.*)", textmail).group(1)
+        mail2 = re.search("a  (.*)", textmail).group(1)
+        mail3 = re.search("a  (.*)", textmail).group(1)
+        return Contact(telhome=telhome, telmob=telmob, telwork=telwork, phone2=phone2, email=email,
+                       mail2=mail2, mail3=mail3)
