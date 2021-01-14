@@ -128,16 +128,16 @@ class ContactHelper:
             self.open_home_page()
             self.contact_cache = []
             table_id = wd.find_element_by_id("maintable")
-            rows = table_id.find_elements_by_tag_name("tr") # берем все строки таблицы
-            for row in rows[1:]:
+            #rows = table_id.find_elements_by_tag_name("tr") # берем все строки таблицы
+            for row in wd.find_elements_by_name("entry"):
                 # начинаем с второй строки
                 cells = row.find_elements_by_tag_name("td")
                 id = cells[0].find_element_by_tag_name("input").get_attribute("value")
                 last_name = cells[1].text
                 first_name = cells[2].text
-                all_phones = cells[5].text.splitlines()
+                all_phones = cells[5].text
                 self.contact_cache.append(Contact(firstname=first_name, lastname=last_name, id=id,
-                                                  telhome=all_phones[0], telmob=all_phones[1], telwork=all_phones[2], fax=all_phones[3]))
+                                                  all_phones_from_home_page=all_phones))
         return list(self.contact_cache)
 
     def open_contact_view_by_index(self, index):
@@ -156,9 +156,9 @@ class ContactHelper:
         telhome = wd.find_element_by_name("home").get_attribute("value")
         telmob = wd.find_element_by_name("mobile").get_attribute("value")
         telwork = wd.find_element_by_name("work").get_attribute("value")
-        fax = wd.find_element_by_name("fax").get_attribute("value")
+        phone2 = wd.find_element_by_name("phone2").get_attribute("value")
         return Contact(firstname=firstname, lastname=lastname, id=id,
-                       telhome=telhome, telmob=telmob, telwork=telwork, fax=fax)
+                       telhome=telhome, telmob=telmob, telwork=telwork, phone2=phone2)
 
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
@@ -167,5 +167,5 @@ class ContactHelper:
         telhome = re.search("H: (.*)", text).group(1)
         telmob = re.search("M: (.*)", text).group(1)
         telwork = re.search("W: (.*)", text).group(1)
-        fax = re.search("F: (.*)", text).group(1)
-        return Contact(telhome=telhome, telmob=telmob, telwork=telwork, fax=fax)
+        phone2 = re.search("P: (.*)", text).group(1)
+        return Contact(telhome=telhome, telmob=telmob, telwork=telwork, phone2=phone2)
