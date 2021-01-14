@@ -19,8 +19,8 @@ def test_phones_on_contact_view_page(app):
     assert contact_from_view_page.telwork == contact_from_edit_page.telwork
     assert contact_from_view_page.phone2 == contact_from_edit_page.phone2
     assert contact_from_view_page.email == contact_from_edit_page.email
-    assert contact_from_view_page.email == contact_from_edit_page.email
-    assert contact_from_view_page.email == contact_from_edit_page.email
+    assert contact_from_view_page.mail2 == contact_from_edit_page.mail2
+    assert contact_from_view_page.mail3 == contact_from_edit_page.mail3
 
 
 def clear(s):
