@@ -7,7 +7,7 @@ from fixture.navigation import Navigation_Helper
 
 class Application:
 
-    def __init__(self, browser):
+    def __init__(self, browser, baseUrl):
         if browser == "firefox":
             self.wd = webdriver.Firefox()
         elif browser == "chrome":
@@ -20,7 +20,7 @@ class Application:
         self.contact = ContactHelper(self)
         self.navigation = Navigation_Helper(self)
         self.wd.maximize_window()
-#        self.base_url = base_url()
+        self.baseUrl = baseUrl
 
 
     def is_valid(self):
