@@ -3,10 +3,10 @@ class Navigation_Helper:
     def __init__(self, app):
         self.app = app
 
-    def home_page(self):
+    def home_page(self, base_url):
         wd = self.app.wd
         if not (wd.current_url.endswith("/index.php") and len(wd.find_elements_by_name("Last name")) > 0):
-            wd.get("http://localhost/addressbook/index.php")
+            wd.get(base_url)
 
     def back_home_page(self):
         wd = self.app.wd
