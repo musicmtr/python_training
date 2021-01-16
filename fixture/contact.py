@@ -135,9 +135,10 @@ class ContactHelper:
                 id = cells[0].find_element_by_tag_name("input").get_attribute("value")
                 last_name = cells[1].text
                 first_name = cells[2].text
-                all_phones = cells[5].text
+                address = cells[3].text
                 all_mail = cells[4].text
-                self.contact_cache.append(Contact(firstname=first_name, lastname=last_name, id=id,
+                all_phones = cells[5].text
+                self.contact_cache.append(Contact(firstname=first_name, lastname=last_name, id=id, address=address,
                                                   all_phones_from_home_page=all_phones, all_mail=all_mail))
         return list(self.contact_cache)
 
@@ -161,9 +162,10 @@ class ContactHelper:
         email = wd.find_element_by_name("email").get_attribute("value")
         mail2 = wd.find_element_by_name("email2").get_attribute("value")
         mail3 = wd.find_element_by_name("email3").get_attribute("value")
+        address = wd.find_element_by_name("address").get_attribute("value")
         return Contact(firstname=firstname, lastname=lastname, id=id,
                        telhome=telhome, telmob=telmob, telwork=telwork, phone2=phone2,
-                       email=email, mail2=mail2, mail3=mail3
+                       email=email, mail2=mail2, mail3=mail3, address=address
                        )
 
     def get_contact_from_view_page(self, index):
@@ -179,5 +181,4 @@ class ContactHelper:
         email = emails[0].text
         mail2 = emails[1].text
         mail3 = emails[2].text
-
         return Contact(telhome=telhome, telmob=telmob, telwork=telwork, phone2=phone2, email=email, mail2=mail2, mail3=mail3)
