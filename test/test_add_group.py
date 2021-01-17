@@ -1,18 +1,6 @@
 # -*- coding: utf-8 -*-
 from model.group import Group
-import pytest
-import random
-import string
 
-
-def random_string(prefex, maxlen):
-    symbols = string.ascii_letters + string.digits + '''string.punctuation + ''' " "*10
-    return prefex + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
-
-testdata = [Group(name="", header="", footer="")] + [
-    Group(name=random_string("name", 10), header=random_string("header", 20), footer=random_string("footer", 20))
-    for i in range(5)
-]
 
 #testdata = [
 #   Group(name=name, header=header, footer=footer)
@@ -21,8 +9,9 @@ testdata = [Group(name="", header="", footer="")] + [
 #   for footer in ["", random_string("name", 10)]
 #   ]
 
-@pytest.mark.parametrize("group", testdata, ids=[repr(x) for x in testdata])
-def test_add_group(app, group):
+
+def test_add_group(app, test_data_groups):
+        group = test_data_groups
         old_groups = app.group.get_group_list()
         app.group.open_create_form()
         #group = Group(name="newgr1", header="newgr1hed", footer="nwe")
