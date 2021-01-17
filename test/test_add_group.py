@@ -10,8 +10,8 @@ from model.group import Group
 #   ]
 
 
-def test_add_group(app, test_data_groups):
-        group = test_data_groups
+def test_add_group(app, json_groups):
+        group = json_groups
         old_groups = app.group.get_group_list()
         app.group.open_create_form()
         #group = Group(name="newgr1", header="newgr1hed", footer="nwe")
