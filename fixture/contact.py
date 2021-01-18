@@ -31,7 +31,9 @@ class ContactHelper:
     def select_contact_by_id_for_edit(self, id):
         wd = self.app.wd
 #        find_element_by_xpath("//a[@href]")
-        wd.find_element_by_xpath('//a [@href="edit.php?id="%s"]' % id).click()
+        #wd.find_element_by_xpath('a [@href="edit.php?id="%s"]' % id).click()
+        #wd.find_element_by_xpath('//a[@href="edit.php?id="%s]' % id).click()
+        wd.find_element_by_xpath('//a[@href="edit.php?id=%s"]' % id).click()
 
 #удаление чекбокса по ид
     def delete_contact_by_id(self, id):
