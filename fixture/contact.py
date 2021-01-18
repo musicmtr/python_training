@@ -82,13 +82,6 @@ class ContactHelper:
         cell = row.find_elements_by_tag_name("td")[7]
         cell.find_element_by_tag_name("a").click()
 
-    def open_contact_to_edit_by_id(self, id):
-        wd = self.app.wd
-        self.open_home_page()
-        row = wd.find_elements_by_name("entry")[index]
-        cell = row.find_elements_by_tag_name("td")[7]
-        cell.find_element_by_tag_name("a").click()
-
     def fill_form(self, contact):
         # поля ФИО, НИК
         wd = self.app.wd

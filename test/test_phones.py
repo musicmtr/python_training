@@ -1,7 +1,8 @@
 import re
 from random import randrange
+from model.contact import Contact
 
-
+'''
 def test_phones_on_home_page(app):
     contact_from_home_page = app.contact.get_contact_list()[0]
     contact_from_edit_page = app.contact.get_contact_info_from_edit_page(0)
@@ -29,6 +30,39 @@ def test_on_home_page(app):
     assert clear(contact_from_home_page.all_mail) == merge_email_like_on_home_page(contact_from_edit_page)
     assert clear(contact_from_home_page.all_phones_from_home_page) == merge_phones_like_on_home_page(contact_from_edit_page)
     assert contact_from_home_page.address == contact_from_edit_page.address
+'''
+
+
+def get_all_id_contact_list(self):
+    list = []
+    cursor = self.connection.cursor()
+    try:
+        cursor.execute("select id from addressbook where deprecated='0000-00-00 00:00:00'")
+        for row in cursor:
+            (id) = row
+            list.append(Contact(id=str(id)))
+    finally:
+        cursor.close()
+    return list
+
+print(list)
+
+def test_all_info(app, db):
+    old_contact = db.get_all_id_contact_list()
+    contact_home = []
+    contact_db = []
+    print(contact_db, contact_home, old_contact)
+    for i in old_contact:
+        contact_from_home_page = app.contact.get_contact_list()[i]
+        contact_home.append(contact_from_home_page)
+        contact_from_edit_page = db.get_all_info_contact_list(i)
+        contact_db.append(contact_from_edit_page)
+    print(contact_db, contact_home)
+#    assert contact_from_home_page.firstname == contact_from_edit_page.firstname
+#    assert contact_from_home_page.lastname == contact_from_edit_page.lastname
+#    assert clear(contact_from_home_page.all_mail) == merge_email_like_on_home_page(contact_from_edit_page)
+#    assert clear(contact_from_home_page.all_phones_from_home_page) == merge_phones_like_on_home_page(contact_from_edit_page)
+#    assert contact_from_home_page.address == contact_from_edit_page.address
 
 
 def clear(s):
