@@ -23,6 +23,25 @@ class ContactHelper:
         self.app.navigation.home_page()
         self.contact_cache = None
 
+#отметить чекбокс по ид
+    def select_contact_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
+
+
+#удаление чекбокса по ид
+    def delete_contact_by_id(self, id):
+        wd = self.app.wd
+        self.open_home_page()
+        # select чек бокс по ид
+        self.select_contact_by_id(id)
+        # кнопка удаления
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.switch_to.alert.accept()
+#        self.app.navigation.home_page()
+        self.open_home_page()
+        self.contact_cache = None
+
     def open_add_new(self):
         wd = self.app.wd
         if not (wd.current_url.endswith("/edit.php") and len(wd.find_elements_by_name("firstname")) > 0):
