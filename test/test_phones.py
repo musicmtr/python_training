@@ -34,13 +34,15 @@ def test_on_home_page(app):
 
 def test_get_only_id(app, db):
     all_id = db.get_only_id()
+    s = db.get_contact_list()
     contact_from_db = db.get_all_info_contact_list()
     contact_home_page = []
+    print(len(all_id), s)
     for i in range(len(all_id)):
         contact_from_home_page = app.contact.get_contact_list()[i]
         contact_home_page.append(contact_from_home_page)
     assert sorted(clearid(contact_home_page), key=Contact.id_or_max) == sorted(clearid(contact_from_db),  key=Contact.id_or_max)
-
+    print(contact_home_page, contact_from_db)
 
 def clear(s):
     return re.sub("[() -]", "", s)

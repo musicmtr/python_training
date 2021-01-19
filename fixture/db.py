@@ -35,22 +35,38 @@ class DbFixture:
             cursor.close()
         return list
 
+    def get_id_contact(self):
+        list = []
+        cursor = self.connection.cursor()
+        try:
+            cursor.execute("select id from addressbook where deprecated='0000-00-00 00:00:00'")
+            for row in cursor:
+                (id) = row
+                list.append(Contact(id=str(id)))
+        finally:
+            cursor.close()
+        return list
+
     def get_only_id(self):
-        old_contact = self.get_contact_list()
+        old_contact = self.get_id_contact()
         row = ''.join(str(e) for e in old_contact)
         idc = []
         # print(old_contact, idc,'\n', row)
         list_id = []
         id = ''
-        for char in row:
-            if char.isdigit():
-                id = id + char
-            else:
-                if id != '':
-                    list_id.append(int(id))
-                    id = ''
-        if id != '':
-            idc.append(int(id))
+        cursor = self.connection.cursor()
+        try:
+            for char in row:
+                if char.isdigit():
+                    id = id + char
+                else:
+                    if id != '':
+                        list_id.append(int(id))
+                        id = ''
+            if id != '':
+                idc.append(int(id))
+        finally:
+            cursor.close()
         return list_id
 
     def get_all_info_contact_list(self):
