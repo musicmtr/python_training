@@ -7,7 +7,7 @@ from model.contact import Contact
 #    contact_from_home_page = app.contact.get_contact_list()[0]
 #    contact_from_edit_page = app.contact.get_contact_info_from_edit_page(0)
 #    assert contact_from_home_page.all_phones_from_home_page == merge_phones_like_on_home_page(contact_from_edit_page)
-#
+
 
 #def test_phones_on_contact_view_page(app):
 #    old_contact = app.contact.get_contact_list()
@@ -34,31 +34,18 @@ from model.contact import Contact
 
 def test_get_only_id(app, db):
     all_id = db.get_only_id()
-    print(all_id)
     contact_from_db = db.get_all_info_contact_list()
     contact_home_page = []
-    for i in len(all_id):
+    for i in range(len(all_id)):
         contact_from_home_page = app.contact.get_contact_list()[i]
         contact_home_page.append(contact_from_home_page)
-    return contact_home_page
-    print(contact_home_page)
+    assert sorted(clear(contact_home_page), key=Contact.id_or_max) == sorted(clear(contact_from_db),  key=Contact.id_or_max)
 
-    '''
-    #for i in old_contact:
-    #    contact_from_home_page = app.contact.get_contact_list()[i]
-    #    contact_home.append(contact_from_home_page)
-    #    contact_from_edit_page = db.get_all_info_contact_list(i)
-    #    contact_db.append(contact_from_edit_page)
-    #print(contact_db, contact_home)
-#    assert contact_from_home_page.firstname == contact_from_edit_page.firstname
-#    assert contact_from_home_page.lastname == contact_from_edit_page.lastname
-#    assert clear(contact_from_home_page.all_mail) == merge_email_like_on_home_page(contact_from_edit_page)
-#    assert clear(contact_from_home_page.all_phones_from_home_page) == merge_phones_like_on_home_page(contact_from_edit_page)
-#    assert contact_from_home_page.address == contact_from_edit_page.address
-'''
+
 
 def clear(s):
-    return re.sub("[() -]", "", s)
+    return re.sub("[() -]", "",
+                  str())
 
 
 def merge_phones_like_on_home_page(contact):
