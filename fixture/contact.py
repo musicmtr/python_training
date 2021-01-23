@@ -159,11 +159,11 @@ class ContactHelper:
                 cells = row.find_elements_by_tag_name("td")
                 id = cells[0].find_element_by_tag_name("input").get_attribute("value")
                 last_name = cells[1].text
-                first_name = cells[2].text
+                firstname = cells[2].text
                 address = cells[3].text
                 all_mail = cells[4].text
                 all_phones = cells[5].text
-                self.contact_cache.append(Contact(firstname=first_name, lastname=last_name, id=id, address=address,
+                self.contact_cache.append(Contact(firstname=firstname, lastname=last_name, id=id, address=address,
                                                   all_phones_from_home_page=all_phones, all_mail=all_mail))
         return list(self.contact_cache)
 

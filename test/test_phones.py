@@ -32,6 +32,7 @@ def test_on_home_page(app):
     assert contact_from_home_page.address == contact_from_edit_page.address
 
 
+
 def test_get_only_id(app, db):
     all_id = db.get_only_id()
     s = db.get_contact_list()
@@ -41,6 +42,20 @@ def test_get_only_id(app, db):
         contact_from_home_page = app.contact.get_contact_list()[i]
         contact_home_page.append(contact_from_home_page)
     assert sorted(clearid(contact_home_page), key=Contact.id_or_max) == sorted(clearid(contact_from_db),  key=Contact.id_or_max)
+
+#def test_db(app, db):
+    #old_contact = app.contact.get_contact_list()
+    #index = randrange(len(old_contact))
+#    contact_from_home_page = app.contact.get_contact_list()
+#    contact_from_db = db.get_all_info_contact_list()
+#    print("\n", contact_from_home_page, "\n" , contact_from_db)
+#    print(type(contact_from_home_page))
+#    print(type(contact_from_db))
+#    assert contact_from_home_page.firstname == contact_from_db.firstname
+#    assert contact_from_home_page.lastname == contact_from_db.lastname
+#    assert clear(contact_from_home_page.all_mail) == merge_email_like_on_home_page(contact_from_db)
+#    assert clear(contact_from_home_page.all_phones_from_home_page) == merge_phones_like_on_home_page(contact_from_db)
+#    assert contact_from_home_page.address == contact_from_db.address
 
 #    assert clearid(contact_from_home_page.firstname) == contact_from_db.firstname
 #    assert clearid(contact_from_home_page.lastname) == contact_from_db.lastname
