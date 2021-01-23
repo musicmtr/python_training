@@ -135,4 +135,10 @@ class GroupHelper:
 
         return list(self.groups_cache)
 
-
+#добавление к старому списку нового значения
+    def merge(self, lst1, lst2):
+            for i in lst2:
+                if i not in lst1:
+                    lst1.append(i)
+            return lst1
+            self.groups_cache = None
