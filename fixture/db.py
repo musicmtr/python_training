@@ -47,6 +47,18 @@ class DbFixture:
             cursor.close()
         return list
 
+    def get_group_name(self):
+        list = []
+        cursor = self.connection.cursor()
+        try:
+            cursor.execute("select group_name from group_list")
+            for row in cursor:
+                (name) = row
+                list.append(Group(name=name))
+        finally:
+            cursor.close()
+        return list.pop(1)
+
     def get_only_id(self):
         old_contact = self.get_id_contact()
         row = ''.join(str(e) for e in old_contact)

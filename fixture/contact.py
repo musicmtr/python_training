@@ -122,12 +122,17 @@ class ContactHelper:
         self.change_field_value(field_name="phone2", text=contact.phone2)
         self.change_field_value(field_name="notes", text=contact.nots)
 
-    def fill_group(self, contact):
-        # поля ФИО, НИК
+    def click_link(self):
         wd = self.app.wd
-        wd.get("http://localhost/addressbook/edit.php")
-        wd.find_element_by_name("new_group").click()
-        wd.find_element_by_xpath("//option[@value='395']").click()
+        wd.find_element_by_xpath("//div/div[4]/div/i/a").click()
+
+    def edit_group(self, index):
+        wd = self.app.wd
+        wd.find_element_by_name("to_group").click()
+        Select(wd.find_element_by_name("to_group")).select_by_visible_text(index)
+        wd.find_element_by_xpath("(//input[@name='add'])[2]").click()
+        self.click_link()
+        self.contact_cache = None
 
     def save_edit_info(self):
         wd = self.app.wd
