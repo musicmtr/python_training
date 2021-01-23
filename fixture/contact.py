@@ -207,3 +207,11 @@ class ContactHelper:
         mail2 = emails[1].text
         mail3 = emails[2].text
         return Contact(telhome=telhome, telmob=telmob, telwork=telwork, phone2=phone2, email=email, mail2=mail2, mail3=mail3)
+
+    # добавление к старому списку нового значения
+    def merge(self, lst1, lst2):
+        for i in lst2:
+            if i not in lst1:
+                lst1.append(i)
+        return lst1
+        self.groups_cache = None

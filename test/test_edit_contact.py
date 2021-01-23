@@ -26,8 +26,9 @@ def test_edit_info(app,  db, check_ui):
     app.contact.save_edit_info()
     new_contact = db.get_contact_list()
     assert len(old_contact) == len(new_contact)
-#    old_contact.remove(contact1)
-#    assert sorted(old_contact, key=Contact.id_or_max) == sorted(new_contact, key=Contact.id_or_max)
+    old_contact.remove(contact1)
+    old = app.contact.merge(old_contact, new_contact)
+    assert sorted(old, key=Contact.id_or_max) == sorted(new_contact, key=Contact.id_or_max)
     if check_ui:
         assert sorted(new_contact, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),  key=Contact.id_or_max)
 
