@@ -14,10 +14,10 @@ def test_phones_on_contact_view_page(app):
     index = randrange(len(old_contact))
     contact_from_view_page = app.contact.get_contact_from_view_page(index)
     contact_from_edit_page = app.contact.get_contact_info_from_edit_page(index)
-    assert contact_from_view_page.telhome == contact_from_edit_page.telhome
-    assert contact_from_view_page.telmob == contact_from_edit_page.telmob
-    assert contact_from_view_page.telwork == contact_from_edit_page.telwork
-    assert contact_from_view_page.phone2 == contact_from_edit_page.phone2
+    assert clear(contact_from_view_page.telhome) == clear(contact_from_edit_page.telhome)
+    assert clear(contact_from_view_page.telmob) == clear(contact_from_edit_page.telmob)
+    assert clear(contact_from_view_page.telwork) == clear(contact_from_edit_page.telwork)
+    assert clear(contact_from_view_page.phone2) == clear(contact_from_edit_page.phone2)
 
 
 def test_on_home_page(app):
@@ -42,9 +42,16 @@ def test_get_only_id(app, db):
         contact_home_page.append(contact_from_home_page)
     assert sorted(clearid(contact_home_page), key=Contact.id_or_max) == sorted(clearid(contact_from_db),  key=Contact.id_or_max)
 
+#    assert clearid(contact_from_home_page.firstname) == contact_from_db.firstname
+#    assert clearid(contact_from_home_page.lastname) == contact_from_db.lastname
+#    assert clearid(contact_from_home_page.all_mail) == merge_email_like_on_home_page(contact_from_db)
+#    assert clearid(contact_from_home_page.all_phones_from_home_page) == merge_phones_like_on_home_page(contact_from_db)
+#    assert clearid(contact_from_home_page.address) == contact_from_db.address
+
 
 def clear(s):
     return re.sub("[() -]", "", s)
+
 
 #работает именно с этим
 def clearid(s):
