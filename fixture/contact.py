@@ -129,8 +129,8 @@ class ContactHelper:
     def edit_group(self, index):
         wd = self.app.wd
         wd.find_element_by_name("to_group").click()
-        Select(wd.find_element_by_name("to_group")).select_by_visible_text(index)
-        wd.find_element_by_xpath("(//input[@name='add'])[2]").click()
+        Select(wd.find_element_by_name("to_group")).select_by_index(index)
+        wd.find_element_by_xpath("//input[@name='add']").click()
         self.click_link()
         self.contact_cache = None
 
