@@ -47,23 +47,45 @@ class DbFixture:
             cursor.close()
         return list
 
-    def get_group_name(self):
+    def get_info_address_in_groups(self):
         list = []
         cursor = self.connection.cursor()
         try:
-            cursor.execute("select group_name from group_list")
+            cursor.execute("select group_id from address_in_groups")
             for row in cursor:
-                (name) = row
-                list.append(Group(name=name))
+                (id) = row
+                list.append(Group(id=str(id)))
         finally:
             cursor.close()
-        return list.pop(1)
+        return list#.pop(1)
 
-    def get_only_id(self):
-        old_contact = self.get_id_contact()
+    def get_only_id_connect(self):
+        old_contact = self.get_info_address_in_groups()
         row = ''.join(str(e) for e in old_contact)
         idc = []
         # print(old_contact, idc,'\n', row)
+        list_id = []
+        id = ''
+        cursor = self.connection.cursor()
+        try:
+            for char in row:
+                if char.isdigit():
+                    id = id + char
+                else:
+                    if id != '':
+                        list_id.append(int(id))
+                        id = ''
+            if id != '':
+                idc.append(int(id))
+        finally:
+            cursor.close()
+        return list_id
+
+    def get_only_id(self):
+        all_id_conncet = self.get_id_contact()
+        row = ''.join(str(e) for e in all_id_conncet)
+        idc = []
+        print(all_id_conncet, idc,'\n', row)
         list_id = []
         id = ''
         cursor = self.connection.cursor()

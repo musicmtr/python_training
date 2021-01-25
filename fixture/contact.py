@@ -126,6 +126,22 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_xpath("//div/div[4]/div/i/a").click()
 
+    def del_in_group(self, id):
+        wd = self.app.wd
+        #wd.find_element_by_name("group").click()
+        wd.find_element_by_xpath("//form[@id='right']").click()
+        #Select(wd.find_element_by_name("//select[@name='group']")).select_by_value(id)
+        #select = Select(wd.find_element_by_xpath("//select[@name='group']"))
+        row = wd.find_element_by_xpath("//select[@name='group']")
+        row.find_element_by_xpath("//option[value='%s']" % id).click()
+        #select.select_by_value(id)
+        #wd.find_elements_by_xpath("//select[@name='group']/option[value='%s']" % id)
+
+        self.select_contact_by_id(1)
+        wd.find_element_by_xpath("//input[@name='remove']").click()
+        self.click_link()
+        self.contact_cache = None
+
     def edit_group(self, index):
         wd = self.app.wd
         wd.find_element_by_name("to_group").click()
