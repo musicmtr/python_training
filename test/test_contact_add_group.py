@@ -33,6 +33,6 @@ def test_del_contact_in_group(app, db):
     id = random.choice(db.get_only_id_connect())
 
     app.contact.del_in_group(id)
-    print(all_connect, "\n", name, "\n", id)
+    print(all_connect, "\n", name, "\n", type(id))
  #   print(type(name), type(list_name))
 

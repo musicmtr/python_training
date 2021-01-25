@@ -132,10 +132,10 @@ class ContactHelper:
         wd.find_element_by_xpath("//form[@id='right']").click()
         #Select(wd.find_element_by_name("//select[@name='group']")).select_by_value(id)
         #select = Select(wd.find_element_by_xpath("//select[@name='group']"))
-        row = wd.find_element_by_xpath("//select[@name='group']")
-        row.find_element_by_xpath("//option[value='%s']" % id).click()
+        #row = wd.find_element_by_xpath("//select[@name='group']")
+        #row.find_element_by_xpath("//option[value='%s']" % id).click()
         #select.select_by_value(id)
-        #wd.find_elements_by_xpath("//select[@name='group']/option[value='%s']" % id)
+        wd.find_elements_by_xpath("//select[@name='group']/option[value='%s']" % id)
 
         self.select_contact_by_id(1)
         wd.find_element_by_xpath("//input[@name='remove']").click()
