@@ -130,14 +130,8 @@ class ContactHelper:
         wd = self.app.wd
         #wd.find_element_by_name("group").click()
         wd.find_element_by_xpath("//form[@id='right']").click()
-        #Select(wd.find_element_by_name("//select[@name='group']")).select_by_value(id)
-        #select = Select(wd.find_element_by_xpath("//select[@name='group']"))
-        #row = wd.find_element_by_xpath("//select[@name='group']")
-        #row.find_element_by_xpath("//option[value='%s']" % id).click()
-        #select.select_by_value(id)
-        wd.find_elements_by_xpath("//select[@name='group']/option[value='%s']" % id)
-
-        self.select_contact_by_id(1)
+        Select(wd.find_element_by_xpath("//select[@name='group']")).select_by_value(str(id))
+        wd.find_elements_by_name("selected[]")[0].click()
         wd.find_element_by_xpath("//input[@name='remove']").click()
         self.click_link()
         self.contact_cache = None
