@@ -117,7 +117,7 @@ class DbFixture:
 
         finally:
             cursor.close()
-        return list
+        return sorted(list, key=Contact.id_or_max)
 
     def destroy(self):
         self.connection.close()

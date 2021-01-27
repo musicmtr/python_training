@@ -188,6 +188,7 @@ class ContactHelper:
                 self.contact_cache.append(Contact(firstname=firstname, lastname=last_name, id=id, address=address,
                                                   all_phones_from_home_page=all_phones, all_mail=all_mail))
         return list(self.contact_cache)
+        self.groups_cache = None
 
     def open_contact_view_by_index(self, index):
         wd = self.app.wd

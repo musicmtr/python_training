@@ -30,6 +30,7 @@ from model.contact import Contact
 #     assert clear(contact_from_home_page.all_mail) == merge_email_like_on_home_page(contact_from_edit_page)
 #     assert clear(contact_from_home_page.all_phones_from_home_page) == merge_phones_like_on_home_page(contact_from_edit_page)
 #     assert contact_from_home_page.address == contact_from_edit_page.address
+#     print(contact_from_home_page.firstname, type(contact_from_edit_page.firstname))
 #
 #
 #
@@ -43,27 +44,42 @@ from model.contact import Contact
 #         contact_home_page.append(contact_from_home_page)
 #     assert sorted(clearid(contact_home_page), key=Contact.id_or_max) == sorted(clearid(contact_from_db),  key=Contact.id_or_max)
 #
-def test_db(app, db):
-    old_contact = app.contact.get_contact_list()
-    index = randrange(len(old_contact))
-    contact_list_from_home_page = app.contact.get_contact_list()
-    contact_from_db = db.get_all_info_contact_list()
-    print("\n", contact_list_from_home_page, "\n", contact_from_db)
-    print(type(contact_list_from_home_page))
-    print(type(contact_from_db))
-    #assert contact_list_from_home_page.firstname == contact_from_db.firstname
-    for i in range(len(contact_list_from_home_page)):
-        assert sorted((contact_list_from_home_page[i]).firstname, key=Contact.id_or_max) == sorted((contact_from_db[i]).firstname, key=Contact.id_or_max)
-#    assert contact_from_home_page.lastname == contact_from_db.lastname
-#    assert clear(contact_from_home_page.all_mail) == merge_email_like_on_home_page(contact_from_db)
-#    assert clear(contact_from_home_page.all_phones_from_home_page) == merge_phones_like_on_home_page(contact_from_db)
-#    assert contact_from_home_page.address == contact_from_db.address
+# def test_db(app, db):
+#     list_all_contact = app.contact.get_contact_list()
+#     z = len(list_all_contact)
+#     for i in range(z):
+#         k = []
+#         k.append(list_all_contact[i])
+#         print(k)
 
-#    assert clearid(contact_from_home_page.firstname) == contact_from_db.firstname
-#    assert clearid(contact_from_home_page.lastname) == contact_from_db.lastname
-#    assert clearid(contact_from_home_page.all_mail) == merge_email_like_on_home_page(contact_from_db)
-#    assert clearid(contact_from_home_page.all_phones_from_home_page) == merge_phones_like_on_home_page(contact_from_db)
-#    assert clearid(contact_from_home_page.address) == contact_from_db.address
+def test_on_home_page(app, db):
+    contact_from_home_page = app.contact.get_contact_list()
+    index = randrange(len(contact_from_home_page))
+    for i in range(index):
+        contact_from_home_page = app.contact.get_contact_list()[i]
+        contact_from_db = db.get_all_info_contact_list()[i]
+        assert contact_from_home_page.firstname == contact_from_db.firstname
+        assert contact_from_home_page.lastname == contact_from_db.lastname
+        assert clear(contact_from_home_page.all_mail) == merge_email_like_on_home_page(contact_from_db)
+        assert clear(contact_from_home_page.all_phones_from_home_page) == merge_phones_like_on_home_page(contact_from_db)
+        assert contact_from_home_page.address == contact_from_db.address
+
+    # z = len(contact_from_home_page)
+    # for i in range(z):
+    #     k = []
+    #     r = []
+    #     k.append(contact_from_home_page[i])
+    #     r.append(contact_from_db[i])
+    #
+    #     print(str(r), type(r))
+    #     assert str(contact_from_home_page).firstname == str(contact_from_db).firstname
+    #     print(type(contact_from_home_page.firstname))
+
+    # assert contact_from_home_page.lastname == contact_from_edit_page.lastname
+    # assert clear(contact_from_home_page.all_mail) == merge_email_like_on_home_page(contact_from_edit_page)
+    # assert clear(contact_from_home_page.all_phones_from_home_page) == merge_phones_like_on_home_page(contact_from_edit_page)
+    # assert contact_from_home_page.address == contact_from_edit_page.address
+
 
 
 def clear(s):
