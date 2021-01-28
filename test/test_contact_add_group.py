@@ -7,10 +7,13 @@ import random
 def test_modify_group_name(app, db, json_contact, orm):
     contacts = json_contact
     list_connect = db.get_info_address_in_groups()
+    print("лист контакт:", "\n", list_connect, type(list_connect))
+    #проверка на наличие групп, если нет, создать
     if len(db.get_group_list()) == 0:
         app.group.create(Group(name="newgr1"))
         app.group.create(Group(name="newgr2"))
         app.group.create(Group(name="newgr3"))
+    #Проверка на наличие контактов, если нет, создать
     if len(db.get_contact_list()) == 0:
         app.contact.open_add_new()
         app.contact.fill_form(contacts)
