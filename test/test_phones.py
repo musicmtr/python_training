@@ -47,7 +47,7 @@ def test_on_home_page(app):
 def test_on_home_page(app, db):
     contacts_from_home_page = sorted(app.contact.get_contact_list(), key=Contact.id_or_max)
     contacts_from_db = sorted(db.get_all_info_contact_list(), key=Contact.id_or_max)
-    index = randrange(len(contacts_from_home_page))
+    index = len(contacts_from_home_page)
     for i in range(index):
         contact_from_home_page = contacts_from_home_page[i]
         contact_from_db = contacts_from_db[i]
