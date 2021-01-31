@@ -52,8 +52,8 @@ def test_del_contact_in_group(app, db, orm, json_contact):
     app.contact.select_contact_by_id(contact.id)
     app.contact.edit_group(nomber)
     list_connect = db.get_info_address_in_groups()
-    id = random.choice(db.get_only_id_connect())
-    app.contact.del_in_group(id)
+    random_group = random.choice(orm.get_id_group_list())
+    app.contact.del_in_group(int(random_group.id))
     new_list_connect = db.get_info_address_in_groups()
     assert len(list_connect) - 1 == len(new_list_connect)
 

@@ -35,10 +35,18 @@ class ORMFixture:
             return Group(id=str(group.id), name=group.name, header=group.header, footer=group.footer)
         return list(map(convert, groups))
 
+    def convert_id_groups_to_model(self, groups):
+        def convert(group):
+            return Group(id=str(group.id))
+        return list(map(convert, groups))
+
     @db_session
     def get_group_list(self):
         return self.convert_groups_to_model(select(g for g in ORMFixture.ORMGroup))
 
+    @db_session
+    def get_id_group_list(self):
+        return self.convert_id_groups_to_model(select(g for g in ORMFixture.ORMGroup))
 
 
     def convert_contacts_to_model(self, contacts):
