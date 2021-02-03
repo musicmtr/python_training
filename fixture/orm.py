@@ -75,3 +75,26 @@ class ORMFixture:
     #         groups.append(self.convert_contacts_to_model(
     #             select(c for c in ORMFixture.ORMContact if c.deprecated is None and orm_group in c.groups)))
     #     return groups
+
+    @db_session
+    def get_contacts_in_all_groups1(self):
+        groups = self.get_group_list()
+        for group in groups:
+            a = self.get_contacts_in_group(group)
+            b = 0
+
+    @db_session
+    def get_contacts_in_all_groups(self):
+        GroupContact = []
+        not_empty_group = {}
+        groups = self.get_group_list()
+        for group in groups:
+            a = self.get_contacts_not_in_group(group)
+            if len(a) != 0:
+                for item in a:
+                    c_list = []
+                    c_list.append(item)
+                not_empty_group[group.id] = c_list
+            else:
+                pass
+        print(not_empty_group)
