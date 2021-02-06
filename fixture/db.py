@@ -85,7 +85,7 @@ class DbFixture:
         all_id_conncet = self.get_id_contact()
         row = ''.join(str(e) for e in all_id_conncet)
         idc = []
-        print(all_id_conncet, idc,'\n', row)
+        #print(all_id_conncet, idc,'\n', row)
         list_id = []
         id = ''
         cursor = self.connection.cursor()
