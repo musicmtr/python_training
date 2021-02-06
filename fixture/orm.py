@@ -76,8 +76,8 @@ class ORMFixture:
         return list(self.convert_contacts_to_model(select(c for c in ORMFixture.ORMContact if len(c.groups) == 0)))
 
     @db_session
-    def get_group_list_not_contacts(self):
-        return list(self.convert_groups_to_model(select(g for g in ORMFixture.ORMGroup if len(g.contacts) == 0)))
+    def get_group_list_have_contacts(self):
+        return list(self.convert_groups_to_model(select(g for g in ORMFixture.ORMGroup if len(g.contacts) != 0)))
 
 
 
