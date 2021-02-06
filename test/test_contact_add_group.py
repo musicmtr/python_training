@@ -24,6 +24,14 @@ def test_modify_group_name(app, db, json_contact, orm):
     list_contact = orm.get_contact_list()
     list_group = orm.get_group_list()
     contact = random.choice(list_contact)
+    if len(orm.get_groups_not_in_contact(contact)) > 0:
+        list = orm.get_groups_not_in_contact(contact)
+        if len(list) == 0:
+            app.group.create(Group(name="new_empty_group"))
+        # тут надо выбрать number этой группы
+        else:
+            number = random.choice(range(len(orm.get_groups_not_in_contact(contact))))
+
     number = random.choice(range(len(list_group)))
     #выборка контакта для добавления
     app.contact.select_contact_by_id(contact.id)
