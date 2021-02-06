@@ -23,14 +23,22 @@ def test_modify_group_name(app, db, json_contact, orm):
     #Собираем информацию о контактах и группах
     list_contact = orm.get_contact_list()
     list_group = orm.get_group_list()
-    contact = random.choice(list_contact)
-    if len(orm.get_groups_not_in_contact(contact)) > 0:
-        list_empty_group = orm.get_groups_not_in_contact(contact)
-        index = list_empty_group[0].id
+    for contact in list_contact:
+        if len(orm.get_groups_not_in_contact(contact)) > 0:
+            list_empty_group = orm.get_groups_not_in_contact(contact)
+            index = list_empty_group[0].id
+            return contact
+            continue
 
-    else:
-        new_group = app.group.create()
-        index = new_group.id_or_max()
+
+        else:
+            app.group.create(Group(name="newemoty_group1111"))
+            list_empty_group = orm.get_groups_not_in_contact(contact)
+            index = list_empty_group[0].id
+            break
+
+
+
 
     #выборка контакта для добавления
     app.contact.select_contact_by_id(contact.id)
