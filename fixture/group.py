@@ -120,6 +120,7 @@ class GroupHelper:
         self.fill_group(group)
         self.submit_create()
         self.groups_cache = None
+        return Group
 
     group_cache = None
 
