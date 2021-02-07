@@ -1,20 +1,55 @@
 # -*- coding: utf-8 -*-
 import pytest
 from fixture.application import Application
+import json
+import importlib
+import jsonpickle
+import os.path
+from fixture.db import DbFixture
+from fixture.orm import ORMFixture
 
 fixture = None
+target = None
+
+
+def load_config(file):
+    global target
+    if target is None:
+        config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), file)
+        with open(config_file) as f:
+            target = json.load(f)
+    return target
+
 
 @pytest.fixture
-def app():
+def app(request):
     global fixture
-    if fixture is None:
-        fixture = Application()
-        fixture.session.login(username="admin", password="secret")
-    else:
-        if not fixture.is_valid():
-            fixture = Application()
-    fixture.session.ensure_login(username="admin", password="secret")
+    global target
+    browser = request.config.getoption("--browser")
+    web_config = load_config(request.config.getoption("--target"))['web']
+    if fixture is None or not fixture.is_valid():
+        fixture = Application(browser=browser, baseUrl=web_config["baseUrl"])
+        fixture.session.login(username=web_config['username'], password=web_config['password'], base_url=web_config["baseUrl"])
+    fixture.session.ensure_login(username=web_config['username'], password=web_config['password'])
     return fixture
+
+
+#фикстура соединения БД
+@pytest.fixture(scope="session")
+def db(request):
+    db_config = load_config(request.config.getoption("--target"))['db']
+    dbfixture = DbFixture(host=db_config['host'], name=db_config['name'], user=db_config['user'], password=db_config['password'])
+    def fin():
+        dbfixture.destroy()
+    request.addfinalizer(fin)
+    return dbfixture
+
+#фикстура соединения ORM
+@pytest.fixture(scope="session")
+def orm():
+    ORMfixture = ORMFixture(host="localhost", name="addressbook", user="root", password="")
+    return ORMfixture
+
 
 @pytest.fixture(scope="session", autouse=True)
 def stop(request):
@@ -23,3 +58,32 @@ def stop(request):
         fixture.destroy()
     request.addfinalizer(fin)
     return fixture
+
+
+@pytest.fixture
+def check_ui(request):
+    return request.config.getoption("--check_ui")
+
+def pytest_addoption(parser):
+    parser.addoption("--browser", action="store", default="firefox")
+    parser.addoption("--target", action="store", default="target.json")
+    parser.addoption("--check_ui", action="store_true")
+
+
+def pytest_generate_tests(metafunc):
+    for fixture in metafunc.fixturenames:
+        if fixture.startswith("test_data_"):
+            testdata = load_from_module(fixture[10:])
+            metafunc.parametrize(fixture, testdata, ids=[str(x) for x in testdata])
+        elif fixture.startswith("json_"):
+            testdata = load_from_json(fixture[5:])
+            metafunc.parametrize(fixture, testdata, ids=[str(x) for x in testdata])
+
+
+def load_from_module(module):
+    return importlib.import_module("test_data.%s" % module).testdata
+
+
+def load_from_json(file):
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_data/%s.json" % file)) as f:
+        return jsonpickle.decode(f.read())
