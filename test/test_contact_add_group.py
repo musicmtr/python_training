@@ -15,8 +15,9 @@ def test_add_contact_in_group2(app, orm, json_contact):
         app.contact.fill_form(contact_inf)
         app.contact.save_created()
         app.contact.open_home_page()
-    # заняты ли связи если да создадим группу
+    # заняты ли связи если да создадим группу, добавим существующий контакт в созданную группу
     groups = orm.get_group_list()
+    contacts = orm.get_contact_list()
     if orm.all_contacts_in_all_groups(groups):
         app.group.create(Group(name="newgr1"))
         app.contact.open_home_page()
@@ -27,6 +28,7 @@ def test_add_contact_in_group2(app, orm, json_contact):
         app.contact.add_contact_in_group_by_id(contact.id, group.id)
         contacts_in_group = orm.get_contacts_in_group(group)
         assert contact in contacts_in_group
+    # добавит контакт в группу
     if len(groups) == len(orm.get_group_list()):
         contacts = orm.get_contact_list()
         groups = orm.get_group_list()
