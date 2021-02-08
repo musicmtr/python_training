@@ -224,6 +224,24 @@ class ContactHelper:
                        email=email, mail2=mail2, mail3=mail3, address=address
                        )
 
+    def add_contact_in_group_by_id(self, id_contact, id_group):
+        wd = self.app.wd
+        self.open_home_page()
+        wd.find_element_by_css_selector("input[value='%s']" % id_contact).click()
+        wd.find_element_by_name("to_group").click()
+        Select(wd.find_element_by_xpath("//select[@name='to_group']")).select_by_value(id_group)
+        wd.find_element_by_name("add").click()
+        self.contact_cache = None
+
+    def del_contact_from_group_by_id(self, id_contact, id_group):
+        wd = self.app.wd
+        self.open_home_page()
+        wd.find_element_by_name("group").click()
+        Select(wd.find_element_by_xpath("//select[@name='group']")).select_by_value(id_group)
+        wd.find_element_by_css_selector("input[value='%s']" % id_contact).click()
+        wd.find_element_by_name("remove").click()
+        self.contact_cache = None
+
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
         self.open_contact_view_by_index(index)

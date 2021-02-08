@@ -68,7 +68,6 @@ class ORMFixture:
     def get_free_contacts(self):
         return self.convert_contacts_to_model(select(c for c in ORMFixture.ORMContact if len(c.groups) == 0))
 
-
     @db_session
     def get_groups_not_in_contact(self, contact):
         orm_contact = list(select(c for c in ORMFixture.ORMContact if c.id == contact))[0]
@@ -86,4 +85,5 @@ class ORMFixture:
         orm_contact = list(select(c for c in ORMFixture.ORMContact if c.id == contact.id))[0]
         return self.convert_groups_to_model(
             select(g for g in ORMFixture.ORMGroup if orm_contact in g.contacts))
+
 
