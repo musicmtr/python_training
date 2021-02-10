@@ -28,11 +28,17 @@ def test_add_contact_in_group2(app, orm, json_contact):
         app.contact.add_contact_in_group_by_id(contact.id, group.id)
         contacts_in_group = orm.get_contacts_in_group(group)
         assert contact in contacts_in_group
-    # добавит контакт в группу
     if len(groups) == len(orm.get_group_list()):
-        contacts = orm.get_contact_list()
+        for group in groups:
+            id_group = group.id
+            while True:
+                free_contact = orm.get_contacts_not_in_group(Group(id=id_group))
+                if len(free_contact):
+                    return free_contact
+                    break
+    if free_contact is None:
         groups = orm.get_group_list()
-        contact = random.choice(contacts)
+        contact = free_contact
         group = random.choice(groups)
         app.contact.add_contact_in_group_by_id(contact.id, group.id)
         contacts_in_group = orm.get_contacts_in_group(group)

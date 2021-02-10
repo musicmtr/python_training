@@ -15,8 +15,9 @@ db = ORMFixture(host="localhost", name="addressbook", user="root", password="")
 #     pass #db.destroy()
 
 try:
-    groups = random.choice(db.get_group_list())
-    l = db.get_contacts_in_group(groups)
+    groups = db.get_group_list()
+    #groupid = random.choice(groups).id
+    l = db.get_free_contacts(groups)
     for item in l:
         print(item)
     print(len(l))
