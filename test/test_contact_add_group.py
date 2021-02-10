@@ -17,7 +17,6 @@ def test_add_contact_in_group2(app, orm, json_contact):
         app.contact.open_home_page()
     # заняты ли связи если да создадим группу, добавим существующий контакт в созданную группу
     groups = orm.get_group_list()
-    contacts = orm.get_contact_list()
     if orm.all_contacts_in_all_groups(groups):
         app.group.create(Group(name="newgr1"))
         app.contact.open_home_page()
@@ -35,7 +34,6 @@ def test_add_contact_in_group2(app, orm, json_contact):
             #while True:
             free_contact = orm.get_contacts_not_in_group(Group(id=id_group))
             free_group = orm.get_groups_not_in_contact((random.choice(orm.get_contact_list()).id))
-            #db.get_groups_not_in_contact((random.choice(db.get_contact_list()).id))
             if len(free_contact):
                 break
         #Беру свободный контакта и для него создаю связь со случайной группой
