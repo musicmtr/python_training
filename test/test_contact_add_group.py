@@ -28,6 +28,7 @@ def test_add_contact_in_group2(app, orm, json_contact):
         app.contact.add_contact_in_group_by_id(contact.id, group.id)
         contacts_in_group = orm.get_contacts_in_group(group)
         assert contact in contacts_in_group
+    # Ищу свободные паррые контакт группа
     if len(groups) == len(orm.get_group_list()):
         for group in groups:
             id_group = group.id
@@ -36,19 +37,12 @@ def test_add_contact_in_group2(app, orm, json_contact):
                 free_group = orm.get_groups_not_in_contact((random.choice(orm.get_contact_list()).id))
                 #db.get_groups_not_in_contact((random.choice(db.get_contact_list()).id))
                 if len(free_contact):
-                    print("\n","SOOOOOOOOOOOOOOOOOOOOO",free_contact[0], type(random.choice(free_contact)))
-                    print("ASSAAAAAAAAAAAAAAA", ((random.choice(free_contact))))
-                    print("GRPPPPPPPPPPPPPPP", free_group[0], type(random.choice(free_group)))
-                    print("GRAATTTTTTTTTTTTA", ((random.choice(free_group))))
-                   # print(free_group, "ВОООТ")
                     break
+        #Беру свободный контакта и для него создаю связь со случайной группой
         groups = random.choice(free_group)
-        print("Группа",groups)
         contact = random.choice(free_contact)
-        print("Контакт",contact)
-        #group = random.choice(groups)
-        app.contact.add_contact_in_group_by_id(contact.id, group.id)
-        contacts_in_group = orm.get_contacts_in_group(group)
+        app.contact.add_contact_in_group_by_id(contact.id, groups.id)
+        contacts_in_group = orm.get_contacts_in_group(groups)
         assert contact in contacts_in_group
 
 
