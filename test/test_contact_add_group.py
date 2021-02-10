@@ -33,7 +33,7 @@ def test_add_contact_in_group2(app, orm, json_contact):
             id_group = group.id
             while True:
                 free_contact = orm.get_contacts_not_in_group(Group(id=id_group))
-                free_group = orm.get_groups_not_in_contact((random.choice(orm.get_contact_list()).id))
+                free_group = orm.get_groups_not_in_contact((random.choice(orm.get_contacts_not_in_group(Group(id=id_group))).id))
                 if len(free_contact):
                     break
         #Беру свободный контакта и для него создаю связь со случайной группой
