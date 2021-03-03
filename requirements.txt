@@ -1,4 +1,4 @@
-pytest==2.9.0
+pytest
 pytest_bdd
 selenium
 urllib3
@@ -6,7 +6,6 @@ virtualenv
 pymysql
 pony
 jsonpickle
-mysql-connrector-python-rf
 lxml-4.5.2-cp39-cp39-win_amd64.whl
 allure-python-commons
-pytest-allure-adaptor==1.7.5
+allure-pytest
